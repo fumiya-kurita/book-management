@@ -1,0 +1,83 @@
+span {
+    font-size: 20px
+}
+
+.title-error {
+    position: absolute;
+    top: 80%;
+    left: 30%;
+    color: red;
+    font-size: 15px
+}
+
+.author-error {
+    position: absolute;
+    left: 35%;
+    top: 80%;
+    color: red;
+    font-size: 15px
+}
+
+.price-error {
+    position: absolute;
+    width: 300px;
+    left: -10%;
+    top: 80%;
+    color: red;
+    font-size: 15px
+}
+
+.detail-error {
+    position: absolute;
+    left: 30%;
+    top: 80%;
+    color: red;
+    font-size: 15px
+}
+
+.title-form {
+    position: absolute;
+    left: 25%;
+    padding-bottom: 20px;
+}
+
+.author-form {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    padding-bottom: 20px;
+}
+
+.price-form {
+    left: 25%;
+    top: 40%;
+    position: absolute;
+    padding-bottom: 20px;
+}
+
+.detail-form {
+    left: 25%;
+    top: 55%;
+    position: absolute;
+    padding-bottom: 20px;
+}
+
+.input-button {
+    left: 44%;
+    top: 80%;
+    position: absolute;
+    appearance: none;
+    border-radius: 5px;
+    background: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+    transition: .4s;
+}
+
+.input-button:hover {
+    background: blue;
+    color: white;
+}
