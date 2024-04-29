@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  book-management:
+    #サービス名
+    build: .
+    volumes:
+      #バインドマウント
+      - ./:/usr/src/app
+    command: npm start
+    ports:
+      - "3000:3000"
