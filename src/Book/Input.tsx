@@ -43,9 +43,19 @@ const Input = ({ onAdd, closeModal }: Props) => {
         }
     }
 
+    const handleClear = () => {
+        setBook({
+            title: "",
+            author: "",
+            price: "",
+            detail: ""
+        })
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit(handleAdd)}>
+
                 <div className="title-form">
                     <span>タイトル：</span>
                     <input
@@ -129,9 +139,8 @@ const Input = ({ onAdd, closeModal }: Props) => {
                     </div>
                 </div>
 
-                <div>
-                    <button className="input-button" type="submit">追加</button>
-                </div>
+                <button className="input-button" type="submit">追加</button>
+                <button className="clear-button" onClick={handleClear}>リセット</button>
             </form>
 
         </>
