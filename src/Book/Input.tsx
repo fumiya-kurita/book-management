@@ -43,6 +43,7 @@ const Input = ({ onAdd, closeModal }: Props) => {
         }
     }
 
+    //入力中の値をリセット
     const handleClear = () => {
         setBook({
             title: "",

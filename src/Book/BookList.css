@@ -46,6 +46,11 @@ input[type=checkbox]:checked.check::after {
     background-color: silver
 }
 
+.click {
+    transition: .4s;
+    background-color: white
+}
+
 .detail-button {
     font-size: 14px;
     font-family: sans-serif;
@@ -62,4 +67,52 @@ input[type=checkbox]:checked.check::after {
 .detail-button:hover {
     background: white;
     color: black;
+}
+
+.arrow_down {
+    position: relative;
+    padding-left: 25px;
+}
+
+.arrow_down::before {
+    /* くの字の表示設定 */
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 2px;
+    cursor: pointer;
+    width: 13px;
+    /* くの字を山なりに見た時、左側の長さ */
+    height: 13px;
+    /* くの字を山なりに見た時、右側の長さ */
+    border-top: 3px solid #000;
+    /* くの字を山なりに見た時、左側の太さと色 */
+    border-right: 3px solid #000;
+    /* くの字を山なりに見た時、右側の太さと色 */
+    transform: rotate(135deg);
+    /* くの字の向き */
+}
+
+.arrow_up {
+    position: relative;
+    padding-left: 25px;
+}
+
+.arrow_up::before {
+    /* くの字の表示設定 */
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 2px;
+    cursor: pointer;
+    width: 13px;
+    /* くの字を山なりに見た時、左側の長さ */
+    height: 13px;
+    /* くの字を山なりに見た時、右側の長さ */
+    border-top: 3px solid #000;
+    /* くの字を山なりに見た時、左側の太さと色 */
+    border-right: 3px solid #000;
+    /* くの字を山なりに見た時、右側の太さと色 */
+    transform: rotate(315deg);
+    /* くの字の向き */
 }

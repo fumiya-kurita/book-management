@@ -9,10 +9,12 @@ import { useModal } from 'react-hooks-use-modal'
 
 const BookManagement = () => {
     const [books, setBooks] = useState<Book[]>(Books.book)
-    //選択中のアイテム数
+    //選択中のレコード数
     const [selectedBooks, setSelectedBooks] = useState(0)
     //削除ボタンの活性・非活性
-    const [disable, setDisable] = useState(true)
+    const [disableDeleteButton, setDisableDeleteButton] = useState(true)
+    //追加ボタンの活性・非活性
+    const [disableAddButton, setDisableAddButton] = useState(false)
 
     //キーの設定
     let keyNumber = books.length + 1
@@ -26,36 +28,67 @@ const BookManagement = () => {
         }
     }
 
-    //アイテム追加
+    //レコード追加
     const handleAdd = (title: string, author: string, price: string, detail: string) => {
         setBooks([...books, { key: setKey(), title, author, price, detail, check: false }])
         console.log(books)
     }
 
-    //アイテムチェック
+    //レコードチェック
     const handleCheck = (book: Book) => {
-        const newBooks = books.map(books => {
+        const checkBooks = books.map(books => {
             if (books.key === book.key) {
                 books.check = !books.check
             }
             return books
         })
-        setBooks(newBooks)
+        setBooks(checkBooks)
 
         const select = books.filter(books => books.check).length
         setSelectedBooks(select)
+        //レコードが選択されている（されていない）場合、削除ボタンを活性（非活性）、追加ボタンを非活性（活性）にする
         if (select === 0) {
-            setDisable(true)
+            setDisableDeleteButton(true)
+            setDisableAddButton(false)
         } else {
-            setDisable(false)
+            setDisableDeleteButton(false)
+            setDisableAddButton(true)
         }
     }
 
-    //アイテム削除
+    //レコード一括チェック
+    const handleAllCheck = () => {
+        const allCheckBooks = books.map(book => {
+            for (book of books) {
+                book.check = true
+            }
+            return book
+        })
+        setBooks(allCheckBooks)
+
+        const selectAll = books.filter(books => books.check).length
+        setSelectedBooks(selectAll)
+        //レコードが選択されている（されていない）場合、削除ボタンを活性（非活性）、追加ボタンを非活性（活性）にする
+        if (selectAll === 0) {
+            setDisableDeleteButton(true)
+            setDisableAddButton(false)
+        } else {
+            setDisableDeleteButton(false)
+            setDisableAddButton(true)
+        }
+    }
+
+
+
+    //レコード削除
     const handleDelete = () => {
         const undeletedItems = books.filter(book => !book.check)
         setBooks(undeletedItems)
-        setDisable(true)
+        //レコードが削除されたら削除ボタンを非活性に
+        setDisableDeleteButton(true)
+        //レコードが削除されたら追加ボタンを活性に
+        setDisableAddButton(false)
+        //0個選択
         setSelectedBooks(0)
     }
 
@@ -78,15 +111,15 @@ const BookManagement = () => {
                     <div>
                         <h3>書籍管理</h3>
                         <Search setBooks={setBooks} setSelectedBooks={setSelectedBooks} />
-                        <button className="modal-button" onClick={open}>追加</button>
-                        <button className={disable ? "delete-button-true" : "delete-button-false"} disabled={disable} onClick={handleDelete}>削除</button>
+                        <button className={disableAddButton ? "add-button-true" : "add-button-false"} disabled={disableAddButton} onClick={open}>追加</button>
+                        <button className={disableDeleteButton ? "delete-button-true" : "delete-button-false"} disabled={disableDeleteButton} onClick={handleDelete}>削除</button>
                     </div>
                 </header>
 
                 <table align="center" >
                     <tbody>
                         <tr>
-                            <th><span>{selectedBooks}個選択中</span></th>
+                            <th>{selectedBooks != 0 ? <span>{selectedBooks}個選択中</span> : <span>一括選択<input type="checkbox" className="check" onChange={handleAllCheck} /></span>}</th>
                             <th>タイトル</th>
                             <th>著者</th>
                             <th>値段</th>
