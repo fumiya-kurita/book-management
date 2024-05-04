@@ -1,5 +1,6 @@
 import Book from "./Book"
 import "./BookList.css"
+import { useState } from "react"
 
 type Props = {
     books: Book
@@ -8,9 +9,12 @@ type Props = {
 
 const Input = ({ books, onCheck }: Props) => {
 
+    const [displayDetail, setDisplayDetail] = useState(false)
     const check = () => {
         onCheck(books)
     }
+
+
 
     return (
         <>
@@ -19,7 +23,17 @@ const Input = ({ books, onCheck }: Props) => {
                 <td >{books.title}</td>
                 <td >{books.author}</td>
                 <td >{books.price}</td>
-                <td><button className="detail-button">詳細</button></td>
+                <td>
+                    <a className={displayDetail ? "arrow_up" : "arrow_down"} onClick={
+                        () => {
+                            if (displayDetail === true) {
+                                setDisplayDetail(false)
+                            } else {
+                                setDisplayDetail(true)
+                            }
+                        }} />
+                    {displayDetail ? <div>{books.detail}</div> : ""}
+                </td>
             </tr >
         </>
     )
