@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useModal } from 'react-hooks-use-modal'
 import { useForm } from 'react-hook-form'
 import "./Input.css"
 

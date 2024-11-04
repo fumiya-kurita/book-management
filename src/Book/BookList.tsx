@@ -9,12 +9,12 @@ type Props = {
 
 const Input = ({ books, onCheck }: Props) => {
 
+    //詳細を表示・非表示の管理
     const [displayDetail, setDisplayDetail] = useState(false)
+
     const check = () => {
         onCheck(books)
     }
-
-
 
     return (
         <>

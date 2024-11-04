@@ -132,6 +132,8 @@ const BookManagement = () => {
                     </tbody>
                 </table>
 
+                <div>{books.length}件</div>
+
                 <div id="modal">
                     <Modal>
                         <div className="showModal">

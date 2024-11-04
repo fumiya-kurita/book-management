@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactEventHandler } from "react";
+import React, { useState } from "react";
 import Book from "./Book"
 import Books from "./Books.json"
 import "./Search.css"
@@ -10,6 +10,8 @@ type Props = {
 
 const Search = ({ setBooks, setSelectedBooks }: Props) => {
     const books = Books.book
+
+    //検索ワード
     const [inputValue, setInputValue] = useState("")
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
